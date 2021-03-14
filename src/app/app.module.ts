@@ -9,6 +9,7 @@ import {GalleryComponent} from './components/gallery/gallery.component';
 import {ChartComponent} from './components/chart/chart.component';
 import {AppRoutingModule} from './app-routing.module';
 import {NavComponent} from './components/nav/nav.component';
+import {HeaderComponent} from './components/header/header.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {NavComponent} from './components/nav/nav.component';
     GalleryComponent,
     ChartComponent,
     NavComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
