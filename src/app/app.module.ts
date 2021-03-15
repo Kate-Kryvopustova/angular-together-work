@@ -11,6 +11,9 @@ import {ChartComponent} from './components/chart/chart.component';
 import {AppRoutingModule} from './app-routing.module';
 import {NavComponent} from './components/nav/nav.component';
 import {HeaderComponent} from './components/header/header.component';
+import {FlowersPhotosComponent} from './components/flowers-photos/flowers-photos.component';
+import {CatsPhotosComponent} from './components/cats-photos/cats-photos.component';
+import {SeaPhotosComponent} from './components/sea-photos/sea-photos.component';
 
 
 @NgModule({
@@ -23,6 +26,9 @@ import {HeaderComponent} from './components/header/header.component';
     ChartComponent,
     NavComponent,
     HeaderComponent,
+    FlowersPhotosComponent,
+    CatsPhotosComponent,
+    SeaPhotosComponent,
   ],
   imports: [
     BrowserModule,
