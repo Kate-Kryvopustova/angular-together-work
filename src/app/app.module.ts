@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 
+import {NgxPaginationModule} from 'ngx-pagination';
+
 import {AppComponent} from './app.component';
 import {HomeComponent} from './components/home/home.component';
 import {FormComponent} from './components/form/form.component';
@@ -33,7 +35,8 @@ import {SeaPhotosComponent} from './components/sea-photos/sea-photos.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

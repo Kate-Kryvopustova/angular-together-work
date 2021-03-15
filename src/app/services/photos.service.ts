@@ -13,8 +13,8 @@ export class PhotosService {
     return this.http.get('https://api.unsplash.com/search/photos', {
       params: {
         query: term,
-        // page: '0',
-        per_page: '30'
+        per_page: '30',
+        orientation: 'landscape'
       },
       headers: {
         Authorization: 'Client-ID nO1myPFj1GoMC5ZE5txbOrbHIoPdDz1lalgArTvpDmI'

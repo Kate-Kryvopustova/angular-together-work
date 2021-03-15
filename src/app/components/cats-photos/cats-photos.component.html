@@ -1,8 +1,11 @@
-<div *ngIf="catsList.length">
+<div *ngIf="catsList.length" class="gallery">
 
-  <div *ngFor="let cat of catsList ">
+  <div *ngFor="let cat of catsList | paginate: { itemsPerPage: 9, currentPage: page, totalItems: totalLength }">
     <img [src]="cat.urls.thumb">
   </div>
 
-  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  <div>
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
+
 </div>
