@@ -1,1 +1,8 @@
-<p>cats-photos works!</p>
+<div *ngIf="catsList.length">
+
+  <div *ngFor="let cat of catsList ">
+    <img [src]="cat.urls.thumb">
+  </div>
+
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>
