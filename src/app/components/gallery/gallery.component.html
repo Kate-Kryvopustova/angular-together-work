@@ -1,4 +1,16 @@
-<a routerLink="./">Cats</a>
-<a routerLink="./sea">Sea</a>
-<a routerLink="./flowers">Flowers</a>
-<router-outlet></router-outlet>
+<div class="ui grid">
+  <div class="two wide column">
+    <div class="ui vertical fluid tabular menu">
+      <a [routerLinkActiveOptions]="{exact: true}" class="item" routerLink="./" routerLinkActive="active">Cats</a>
+      <a class="item" routerLink="./sea" routerLinkActive="active">Sea</a>
+      <a class="item" routerLink="./flowers" routerLinkActive="active">Flowers</a>
+    </div>
+  </div>
+  <div class="fourteen wide stretched column">
+    <div class="ui segment">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+
