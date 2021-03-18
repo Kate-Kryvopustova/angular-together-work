@@ -18,6 +18,17 @@
   border-radius: 15px;
   text-decoration: none;
   color: rgb(49, 49, 49); 
+  -webkit-transition: all 0.3s ease;;
+  -moz-transition: all 0.3s ease;;
+  -o-transition: all 0.3s ease;;
+  transition: all 0.3s ease;
+}
+
+.link:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+  background:#53ea93;
 }
 
 .link__content {
