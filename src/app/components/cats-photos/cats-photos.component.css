@@ -3,3 +3,17 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
 }
+
+.card-title {
+  padding: 0 10px;
+}
+
+img:hover {
+  /*transform: scale(1.5);*/
+  opacity: .7;
+}
+
+
+
+
+

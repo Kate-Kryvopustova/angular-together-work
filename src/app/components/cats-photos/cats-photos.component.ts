@@ -12,6 +12,7 @@ export class CatsPhotosComponent implements OnInit {
   catsList = [];
   totalLength: number;
   page = 1;
+  imgText = false;
 
   constructor(private photos: PhotosService) {
   }
@@ -26,5 +27,13 @@ export class CatsPhotosComponent implements OnInit {
       this.catsList = response.results;
       this.totalLength = response.results.length;
     });
+  }
+
+  hoverIn() {
+    this.imgText = true
+  }
+
+  hoverOut() {
+    this.imgText = false;
   }
 }
