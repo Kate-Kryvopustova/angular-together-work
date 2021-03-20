@@ -1,15 +1,15 @@
 <div class="ui grid">
   <div class="two wide column">
     <div class="ui vertical fluid tabular menu">
-      <a [routerLinkActiveOptions]="{exact: true}" class="item" routerLink="./" routerLinkActive="active">Cats</a>
-      <a class="item" routerLink="./sea" routerLinkActive="active">Sea</a>
-      <a class="item" routerLink="./flowers" routerLinkActive="active">Flowers</a>
+      <button (click)="term = 'cats'" class="ui button term_button">Cats</button>
+      <button (click)="term = 'sea'" class="ui button term_button">Sea</button>
+      <button (click)="term = 'flowers'" class="ui button term_button">Flowers</button>
     </div>
   </div>
   <div class="fourteen wide stretched column">
-    <div class="ui segment">
-      <router-outlet></router-outlet>
-    </div>
+    <app-photos *ngIf="term === 'cats'" [term]="'cats'"></app-photos>
+    <app-photos *ngIf="term === 'sea'" [term]="'sea'"></app-photos>
+    <app-photos *ngIf="term === 'flowers'" [term]="'flowers'"></app-photos>
   </div>
 </div>
 

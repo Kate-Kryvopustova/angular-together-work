@@ -1,14 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {PhotosService} from "../../services/photos.service";
 
 @Component({
-  selector: 'app-cats-photos',
-  templateUrl: './cats-photos.component.html',
-  styleUrls: ['./cats-photos.component.css']
+  selector: 'app-photos',
+  templateUrl: './photos.component.html',
+  styleUrls: ['./photos.component.css']
 })
 
-export class CatsPhotosComponent implements OnInit {
-  term = 'cats';
+export class PhotosComponent implements OnInit {
+  @Input() term = '';
+
   catsList = [];
   totalLength: number;
   page = 1;
