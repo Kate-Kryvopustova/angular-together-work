@@ -10,10 +10,10 @@ import {PhotosService} from "../../services/photos.service";
 export class PhotosComponent implements OnInit {
   @Input() term = '';
 
-  catsList = [];
+  photosList = [];
   totalLength: number;
   page = 1;
-  imgText = false;
+  hoverIndex: number;
 
   constructor(private photos: PhotosService) {
   }
@@ -24,17 +24,16 @@ export class PhotosComponent implements OnInit {
 
   getPhotos(): void {
     this.photos.search(this.term).subscribe(response => {
-      console.log(response);
-      this.catsList = response.results;
+      this.photosList = response.results;
       this.totalLength = response.results.length;
     });
   }
 
-  hoverIn() {
-    this.imgText = true
+  onMouseEnter(i) {
+    this.hoverIndex = i;
   }
 
-  hoverOut() {
-    this.imgText = false;
+  onMouseLeave(i) {
+    this.hoverIndex = null;
   }
 }

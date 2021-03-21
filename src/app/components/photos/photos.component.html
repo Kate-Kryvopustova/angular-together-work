@@ -1,11 +1,24 @@
-<div *ngIf="catsList.length" class="gallery">
+<div *ngIf="photosList.length" class="gallery">
 
-  <div (mouseenter)="hoverIn()" (mouseleave)="hoverOut()"
-       *ngFor="let cat of catsList | paginate: { itemsPerPage: 9, currentPage: page, totalItems: totalLength}"
-       class="ui card">
-    <img [src]="cat.urls.thumb">
-    <h3 class="card-title">{{cat.alt_description | titlecase}}</h3>
-    <p *ngIf="imgText">Likes: {{cat.likes}}</p>
+  <div
+    *ngFor="let cat of photosList | paginate: { itemsPerPage: 9, currentPage: page, totalItems: totalLength}; let i = index"
+    class="ui card"
+  >
+
+    <div>
+      <img
+        (mouseenter)="onMouseEnter(i)"
+        (mouseleave)="onMouseLeave(i)"
+        [src]="cat.urls.thumb"
+        alt="{{cat.alt_description}}"
+      >
+      <h3 class="card-title">{{cat.alt_description | uppercase}}</h3>
+    </div>
+
+    <div *ngIf="hoverIndex === i" class="cover">
+      <p>Likes: {{cat.likes}}</p>
+    </div>
+
   </div>
 
   <div>
