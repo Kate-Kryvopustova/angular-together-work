@@ -23,9 +23,9 @@ export class PhotosComponent implements OnInit {
   }
 
   getPhotos(): void {
-    this.photos.search(this.term).subscribe(response => {
-      this.photosList = response.results;
-      this.totalLength = response.results.length;
+    this.photos.search(this.term).subscribe(photos => {
+      this.photosList = photos;
+      this.totalLength = photos.length;
     });
   }
 
