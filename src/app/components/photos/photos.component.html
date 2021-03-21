@@ -7,6 +7,7 @@
 
     <div>
       <img
+        class="image"
         (mouseenter)="onMouseEnter(i)"
         (mouseleave)="onMouseLeave(i)"
         [src]="cat.urls.thumb"
@@ -21,7 +22,7 @@
 
   </div>
 
-  <div>
+  <div class="pagination">
     <pagination-controls (pageChange)="page = $event"></pagination-controls>
   </div>
 

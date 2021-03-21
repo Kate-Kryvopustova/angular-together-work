@@ -6,9 +6,10 @@
 
 .card-title {
   padding: 0 10px;
+  text-align: center;
 }
 
-img {
+.image {
   width: 100%;
 }
 
@@ -20,11 +21,15 @@ img {
   left: 0;
   color: rgb(203, 207, 227);
   text-align: center;
-  /*transition: all .5s linear;*/
+  transition: all .5s linear;
   font-size: 30px;
   font-weight: 700;
   padding-top: 50px;
   background-color: rgba(43, 39, 39, 0.8);
+}
+
+.pagination {
+  font-size: 20px;
 }
 
 
