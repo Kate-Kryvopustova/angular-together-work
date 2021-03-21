@@ -13,6 +13,10 @@
   width: 100%;
 }
 
+.card:hover {
+  transform: scale(1.2);
+}
+
 .cover {
   position: absolute;
   top: 0;
