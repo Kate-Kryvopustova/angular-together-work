@@ -1,1 +1,24 @@
-<p>Gallery component</p>
+<app-header></app-header>
+
+<div class="ui grid">
+  <div class="three wide column">
+    <div class="ui vertical fluid tabular menu">
+      <div class="button-container">
+        <button (click)="term = 'cats'" class="ui primary basic button">Cats</button>
+      </div>
+      <div class="button-container">
+        <button (click)="term = 'sea'" class="ui primary basic button">Sea</button>
+      </div>
+      <div class="button-container">
+        <button (click)="term = 'flowers'" class="ui primary basic button">Flowers</button>
+      </div>
+    </div>
+  </div>
+  <div class="eleven wide stretched column">
+    <app-photos *ngIf="term === 'cats'" [term]="'cats'"></app-photos>
+    <app-photos *ngIf="term === 'sea'" [term]="'sea'"></app-photos>
+    <app-photos *ngIf="term === 'flowers'" [term]="'flowers'"></app-photos>
+  </div>
+</div>
+
+

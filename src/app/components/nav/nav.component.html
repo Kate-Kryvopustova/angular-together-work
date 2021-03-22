@@ -1,8 +1,7 @@
-<div class="container">
-  <a routerLink="" class="link">Home</a>
-  <a routerLink="/chart" class="link">Chart</a>
-  <a routerLink="/form" class="link">Form</a>
-  <a routerLink="/gallery" class="link">Gallery</a>
-  <a routerLink="/list" class="link">List</a>
+<div class="ui five item menu">
+  <a [routerLinkActiveOptions]="{exact: true}" class="item" routerLink="" routerLinkActive="active">Home</a>
+  <a class="item" routerLink="/chart" routerLinkActive="active">Chart</a>
+  <a class="item" routerLink="/form" routerLinkActive="active">Form</a>
+  <a class="item" routerLink="/gallery" routerLinkActive="active">Gallery</a>
+  <a class="item" routerLink="/list" routerLinkActive="active">List</a>
 </div>
-<hr>
