@@ -10,6 +10,8 @@ import {ChartComponent} from './components/chart/chart.component';
 import {AppRoutingModule} from './app-routing.module';
 import {NavComponent} from './components/nav/nav.component';
 import {HeaderComponent} from './components/header/header.component';
+import { MapComponent } from './components/map/map.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import {HeaderComponent} from './components/header/header.component';
     ChartComponent,
     NavComponent,
     HeaderComponent,
+    MapComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
