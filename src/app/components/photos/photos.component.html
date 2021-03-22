@@ -3,13 +3,13 @@
   <div
     *ngFor="let cat of photosList | paginate: { itemsPerPage: 9, currentPage: page, totalItems: totalLength}; let i = index"
     class="ui card"
+    (mouseenter)="onMouseEnter(i)"
+    (mouseleave)="onMouseLeave(i)"
   >
 
     <div>
       <img
         class="image"
-        (mouseenter)="onMouseEnter(i)"
-        (mouseleave)="onMouseLeave(i)"
         [src]="cat.urls.thumb"
         alt="{{cat.alt_description}}"
       >
