@@ -1,2 +1,39 @@
-<app-header></app-header>
-<p>List component</p>
+<body>
+	<app-header></app-header>
+	<div class="wrapped">
+		<mat-card class="listCard">
+			<form class="example-form" >
+
+				<mat-form-field class="full-width">
+					<input matInput placeholder="Enter name robot" class="textareafull"  [(ngModel)]="inputValue.title" name="inputValue"  required>
+				</mat-form-field>
+	
+				<mat-form-field class="full-width">
+					<input matInput placeholder="Enter description robot" class="textareafull" [(ngModel)]="inputValue.content" name="inputValue" >
+				</mat-form-field>
+				
+				<button mat-button (click)="openAddDialog()" *ngIf="!editValue" >Add</button>
+				<button mat-button (click)="saveNewItem()" *ngIf="editValue">Save</button>
+			</form>
+		
+			<mat-list *ngFor="let item of (allList | async) | paginate: { itemsPerPage: 4, currentPage: p }">
+				<mat-toolbar  class="listItem" color="primary">
+					<img class='image'  [src]="item.src">
+					<mat-toolbar-row class="container">
+	
+						<div class="info">
+							<span class="title">{{item.title}}</span>
+							<span class="content">{{item.content}}</span>
+						</div>
+						
+						<mat-icon (click)="openEditDialog(item)" class="btn"> edit</mat-icon>
+						<mat-icon (click)="openDeleteDialog(item.id)" class="btn">delete</mat-icon>
+					</mat-toolbar-row>
+				</mat-toolbar>
+			</mat-list>
+			
+			<pagination-controls class="pagination-controls" (pageChange)="p = $event"></pagination-controls> 
+		
+		</mat-card>
+	</div>
+</body>
