@@ -1,0 +1,48 @@
+#headerInsideForm, .field-width, .email-field {
+  width: 100%;
+}
+
+.registration-form {
+  width: 600px;
+  margin-left: 140px;
+}
+
+td {
+  padding-right: 8px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 4px;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.radio-button {
+  margin: 5px;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.genre-selector {
+  width: 600px;
+}
+
+.btn {
+  width: 600px;
+  height: 40px;
+  margin-left: 140px;
+  margin-top: 40px;
+  background-color: bisque;
+  font-size: 20px;
+  border: 0.5px solid black;
+}
+
+
