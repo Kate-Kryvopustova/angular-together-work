@@ -1,0 +1,33 @@
+.marker-list-wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+.empty-list-message {
+  width: 95%;
+  height: 55px;
+  padding-top: 1px;
+  margin: 10px 10px 0 10px;
+  justify-items: center;
+  text-align: center;
+  font-size: 18px;
+  font-style: italic;
+  box-shadow: 1px 2px 5px black;
+}
+
+.marker-list-title {
+  padding: 0;
+  margin: 0 10px;
+  font-style: italic;
+  text-align: center;
+  width: 95%;
+  height: 55px;
+  background-color: #FFEBCD;
+  justify-items: center;
+  box-shadow: 1px 2px 5px black;
+}
+
+.marker-list-title h2 {
+  padding-top: 10px;
+  margin: 0;
+}

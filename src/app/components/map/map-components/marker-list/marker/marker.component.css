@@ -1,0 +1,58 @@
+.marker-card {
+  cursor: pointer;
+  padding: 10px;
+  box-shadow: 1px 2px 5px black;
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 99% 1%;
+}
+
+.marker-card-active {
+  background-color: rgb(255, 248, 237);
+}
+
+.marker-content {
+  width: 100%;
+}
+
+.marker-card button {
+  visibility: hidden;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  position: relative;
+  top: -10px;
+  left: -6px;
+  height: 20px;
+  width: 20px;
+  transition: ease 200ms;
+  background-color: red;
+  color: white;
+}
+
+.marker-card:hover button {
+  visibility: visible;
+}
+
+.marker-card button:hover {
+  box-shadow: 0 0 3px red;
+}
+
+.marker-card button:active {
+  box-shadow: 0 0 1px red;
+}
+
+.marker-name {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.marker-description {
+  text-align: justify;
+  text-indent: 20px;
+  margin: 0;
+  padding: 5px;
+  font-size: 18px;
+}

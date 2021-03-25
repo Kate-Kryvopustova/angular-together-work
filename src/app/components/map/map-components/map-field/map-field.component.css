@@ -1,0 +1,33 @@
+.map-container {
+  width: 100%;
+  height: 100%;
+}
+
+.map-field-menu {
+  opacity: 0.5;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  position: absolute;
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 0 0 5px 0;
+  transition: 200ms;
+  font-weight: bold;
+}
+
+.map-field-menu:hover {
+  opacity: 1;
+  background: white;
+}
+
+.map-field-menu input {
+  width: 15px;
+}
+
+.map-field-menu label {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  font-size: 15px;
+}
