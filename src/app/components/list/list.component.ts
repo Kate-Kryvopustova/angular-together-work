@@ -7,7 +7,7 @@ import {
   AngularFirestoreDocument
 } from '@angular/fire/firestore';
 
-import {MatSnackBar} from '@angular/material/snack-bar'
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
 
 import {PopUpAddComponent} from './pop-up-add/pop-up-add.component';
@@ -30,27 +30,28 @@ export class ListComponent implements OnInit {
   inputId: string;
 
   inputValue: IList = {
-    title: "",
-    content: "",
-    src: ""
+    title: '',
+    content: '',
+    src: ''
   };
 
   editValue: boolean = false;
-  
-  constructor(
-    public angularFirestore: AngularFirestore, 
-    public snackBar: MatSnackBar, 
-    public dialog: MatDialog
-  ) { }
 
-  ngOnInit() {
+  constructor(
+    public angularFirestore: AngularFirestore,
+    public snackBar: MatSnackBar,
+    public dialog: MatDialog
+  ) {
+  }
+
+  ngOnInit(): void {
     this.listCollection = this.angularFirestore.collection('List');
     this.allList = this.angularFirestore.collection('List', ref => ref.orderBy('datemodified')).snapshotChanges().pipe(map(changes => {
       return changes.map(a => {
         const data = a.payload.doc.data() as IList;
         data.id = a.payload.doc.id;
         return data;
-      })
+      });
     }));
   }
 
@@ -61,8 +62,8 @@ export class ListComponent implements OnInit {
       if (result) {
         this.addNewItem();
       } else {
-        this.inputValue.content = "";
-        this.inputValue.title = "";
+        this.inputValue.content = '';
+        this.inputValue.title = '';
       }
     });
   }
@@ -74,8 +75,8 @@ export class ListComponent implements OnInit {
       if (result) {
         this.editItem(item);
       } else {
-        this.inputValue.content = "";
-        this.inputValue.title = "";
+        this.inputValue.content = '';
+        this.inputValue.title = '';
       }
     });
   }
@@ -87,29 +88,29 @@ export class ListComponent implements OnInit {
       if (result) {
         this.deleteItem(item);
       } else {
-        this.inputValue.content = "";
-        this.inputValue.title = "";
+        this.inputValue.content = '';
+        this.inputValue.title = '';
       }
     });
   }
 
   addNewItem(): void {
-    if (this.inputValue.title != "") {
-      this.inputValue.datemodified = new Date();      
-      this.inputValue.src = "https://robohash.org/" + this.inputValue.title;
+    if (this.inputValue.title != '') {
+      this.inputValue.datemodified = new Date();
+      this.inputValue.src = 'https://robohash.org/' + this.inputValue.title;
       this.listCollection.add(this.inputValue);
-      this.inputValue.content = "";
-      this.inputValue.title = "";
-      this.openSnackBar("Added Successfuly!", "");
+      this.inputValue.content = '';
+      this.inputValue.title = '';
+      this.openSnackBar('Added Successfuly!', '');
     } else {
-      this.openSnackBar("Need input name robot!", "");
+      this.openSnackBar('Need input name robot!', '');
     }
   }
 
   deleteItem(item): void {
     this.listDoc = this.angularFirestore.doc(`List/${item}`);
     this.listDoc.delete();
-    this.openSnackBar("Robot Deleted!", "");
+    this.openSnackBar('Robot Deleted!', '');
   }
 
   editItem(item): void {
@@ -120,14 +121,14 @@ export class ListComponent implements OnInit {
   }
 
   saveNewItem(): void {
-    if (this.inputValue.title != "") {
+    if (this.inputValue.title != '') {
       this.inputValue.datemodified = new Date();
       this.listDoc = this.angularFirestore.doc(`List/${this.inputId}`);
       this.listDoc.update(this.inputValue);
       this.editValue = false;
-      this.inputValue.title = "";
-      this.inputValue.content = ""
-      this.openSnackBar("Updated Successfuly!", "");
+      this.inputValue.title = '';
+      this.inputValue.content = '';
+      this.openSnackBar('Updated Successfuly!', '');
     }
   }
 
@@ -135,6 +136,6 @@ export class ListComponent implements OnInit {
     this.snackBar.open(message, action, {
       duration: 2000,
       verticalPosition: 'top',
-    });   
-  } 
+    });
+  }
 }

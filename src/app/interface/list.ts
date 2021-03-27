@@ -3,5 +3,5 @@ export interface IList {
   content: string;
   id?: string;
   datemodified?: Date;
-  src: string
+  src: string;
 }
