@@ -1,89 +1,66 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Chart } from 'node_modules/chart.js';
 
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.css']
+  styleUrls: ['./chart.component.css'],
 })
+
 export class ChartComponent implements OnInit {
 
-  condition: boolean = false;
+  condition: boolean = true;
   conditionPopup: boolean = false;
-
-  popupCall() {
-    this.conditionPopup = true;
-  }
-  closePopup(){
-    this.conditionPopup = false;
-  }
-
-  toggle() {
-    this.condition = !this.condition;
+  desription: string = '';
+  inputValue: string = '';
+  arr = [];
+  myChart: any = null;
+  colorArr = ['rgba(54, 162, 235, 0.2)'];
+  arrInputControl: FormControl;
+  
+  ngOnInit(): void {
+    this.arrInputControl = new FormControl();
+    this.arrInputControl.valueChanges.subscribe((el) => this.arr.push(el));   
   }
 
   constructor() {}
-
-  @ViewChild('graphDescription', { read: ElementRef })
-  graphDescription: ElementRef;
-
-  colorArr = ['rgba(54, 162, 235, 0.2)'];
-
-  ngOnInit(): void {
-    this.getFunc('line');
+  
+  popupCall() {
+    this.conditionPopup = true;
+  }
+  closePopup() {
+    this.conditionPopup = false;
   }
 
-  // currentFunc = this.lineTypeClick();
-
-  arr = [];
-
-  addValue(num) {
-    this.arr.push(num);
-    this.colorArr.push(this.makeRandomColor());
-    this.addDesription();
-    if (this.arr.length > 1) {
-      this.ngOnInit();
-      this.condition = true;
-      // this.currentFunc;
-    }
+  addDesription() {
+    this.desription = `Diagram of [ ${this.arr.join(', ')} ] values.`;
   }
 
-  lineTypeClick() {
-    this.getFunc('line');
-    // this.currentFunc = this.lineTypeClick();
-  }
-  radarTypeClick() {
-    this.getFunc('radar');
-    // this.currentFunc = this.radarTypeClick();
-  }
-  barTypeClick() {
-    this.getFunc('bar');
-    // this.currentFunc = this.barTypeClick();
-  }
-  pieTypeClick() {
-    this.getFunc('pie');
-    // this.currentFunc = this.pieTypeClick();
-  }
+  addValue(){
+     this.arrInputControl = new FormControl();
+     this.arrInputControl.valueChanges.subscribe((el) => this.arr.push(el)); 
+     console.log(this.arr);
+     this.inputValue = null;
+      this.colorArr.push(this.makeRandomColor());
+      this.addDesription();
+      if (this.arr.length > 1) {
+        this.condition = true;
+        this.getFunc('line');
+      }
+  } 
 
-  makeRandomColor() {
-    var o = Math.round,
-      r = Math.random,
-      s = 255;
-    return (
-      'rgba(' +
-      o(r() * s) +
-      ',' +
-      o(r() * s) +
-      ',' +
-      o(r() * s) +
-      ',' +
-      r().toFixed(1) +
-      ')'
-    );
+  private makeRandomColor() {
+    return `rgba(${Math.round(Math.random() * 255)}, ${Math.round(
+      Math.random() * 255
+    )}, ${Math.round(Math.random() * 255)})`;
   }
 
   getFunc(typeOfGraph) {
-    var myChart = new Chart('myChart', {
+    if (this.myChart) {
+      this.myChart.destroy();
+    }  
+    this.myChart = new Chart('myChart',  {
       type: typeOfGraph,
       data: {
         labels: this.arr,
@@ -96,20 +73,16 @@ export class ChartComponent implements OnInit {
         ],
       },
     });
+    this.myChart.update();
   }
 
-  addDesription() {
-    this.graphDescription.nativeElement.textContent =
-      'Diagram of [' + this.arr + '] values.';
-  }
-
+  // TODO: combine some properties into logical objects
   clearLocalDatas() {
     this.arr = [];
+    this.myChart.destroy();
     this.colorArr = ['rgba(54, 162, 235, 0.2)'];
     this.getFunc('line');
     this.conditionPopup = false;
-    this.condition = false;
-    this.graphDescription.nativeElement.textContent = 'Description';
+    this.desription = 'Description';
   }
-
 }

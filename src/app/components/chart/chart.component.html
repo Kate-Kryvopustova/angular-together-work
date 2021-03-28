@@ -2,31 +2,29 @@
 
 <p>Chart component</p>
 
-<input type="number" #inputValue />
-<button (click)="addValue(inputValue.value)" (click)="inputValue.value = ''">
-  add
-</button>
+<input type="number" [formControl]='arrInputControl' #qwe>
+<button (click)="addValue()">Add</button>
 
 <br />
 
-<button *ngIf="condition" (click)="lineTypeClick()">line</button>
-<button *ngIf="condition" (click)="radarTypeClick()">radar</button>
-<button *ngIf="condition" (click)="barTypeClick()">bar</button>
-<button *ngIf="condition" (click)="pieTypeClick()">pie</button>
-
+<button *ngIf="condition" (click)="getFunc('line')">line</button>
+<button *ngIf="condition" (click)="getFunc('radar')">radar</button>
+<button *ngIf="condition" (click)="getFunc('bar')">bar</button>
+<button *ngIf="condition" (click)="getFunc('pie')">pie</button>
+<button *ngIf="condition" (click)="popupCall()">clear</button>
 <br />
 
-<div class="container" *ngIf="condition">
+<div id="container" *ngIf="condition">
+  <div id="divDescription">
+    <p>{{desription}}</p>
+  </div>
   <div id="divChart">
-    <canvas mdbChart id="myChart">></canvas>
+    <canvas mdbChart  width="200" height="200" id="myChart"></canvas>
   </div>
 </div>
 
-<p #graphDescription>description</p>
 
 <br />
-
-<button *ngIf="condition" (click)="popupCall()">clear</button>
 
 <div class="bg-modal">
   <div class="popup" *ngIf="conditionPopup">

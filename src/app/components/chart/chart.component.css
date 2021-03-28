@@ -1,13 +1,17 @@
 #divChart {
   display: block;
-  width: 800px;
-  height: 600px;
+  width: 500px;
+  height: 200px;
+}
+
+#divDescription{
+  display: block;
 }
 
 .container {
-  display: block;
+  
   width: 800px;
-  height: 450px;
+  height: 200px;
   border: 1px;
   padding: .5rem 1rem;
   border: 1px dashed #ccc;
