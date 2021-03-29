@@ -4,7 +4,7 @@
 
 .registration-form {
   width: 600px;
-  margin-left: 140px;
+  margin-left: 160px;
 }
 
 td {
@@ -35,14 +35,15 @@ td {
   width: 600px;
 }
 
-.btn {
+#btn {
   width: 600px;
   height: 40px;
-  margin-left: 140px;
   margin-top: 40px;
   background-color: bisque;
   font-size: 20px;
   border: 0.5px solid black;
 }
+
+
 
 

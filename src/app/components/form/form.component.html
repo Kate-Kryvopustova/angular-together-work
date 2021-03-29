@@ -3,158 +3,206 @@
 <div class="registration-form">
   <h2>BECOME A COMMUNITY MEMBER</h2>
   <h4>{{title}}</h4>
-  <div>
-    <form>
-      <table class="field-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="field-width">
-              <mat-label>First Name</mat-label>
-              <input matInput [formControl]="firstName" [errorStateMatcher]="matcher">
-              <mat-error *ngIf="email.hasError('required')">
-                First Name <strong>required</strong>
-              </mat-error>
-              <mat-error *ngIf="firstName.hasError('minlength')">
-                First Name <strong>must be longer than 2 letters</strong>
-              </mat-error>
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="field-width">
-              <mat-label>Last Name</mat-label>
-              <input matInput>
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
+  <form [formGroup]="registrationForm">
 
-      <mat-form-field class="email-field">
-        <mat-label>Email</mat-label>
-        <input type="email" matInput [formControl]="email" [errorStateMatcher]="matcher"
-               placeholder="Ex. pat@example.com">
-        <mat-hint>Enter a valid email address</mat-hint>
-        <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-          Please enter a valid email address
-        </mat-error>
-        <mat-error *ngIf="email.hasError('required')">
-          Email is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
+    <table class="field-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="field-width">
+            <mat-label>First Name</mat-label>
+            <input matInput class="tooltip"
+                   title="First name must contain at least 3 letters"
+                   formControlName="firstName"
+                   required>
+            <mat-error>
+              Please enter a valid first name.
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="field-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput
+                   formControlName="lastName"
+                   required>
+            <mat-error>
+              Please enter a valid last name.
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <mat-form-field class="email-field">
+      <mat-label>Email</mat-label>
+      <input matInput
+             type="email"
+             title="Ex. name@example.com"
+             formControlName="email"
+             placeholder="Ex. name@example.com"
+             required>
+      <mat-hint>Enter a valid email address</mat-hint>
+      <mat-error>
+        Please enter a valid email address.
+      </mat-error>
+    </mat-form-field>
+
+    <table class="field-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="field-width">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'"
+                   title="Minimum of 8 characters. Must include: 1 uppercase letter, 1 lowercase letter, 1 number, 1 special character"
+                   formControlName="password"
+                   required>
+            <button mat-icon-button matSuffix
+                    (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error>
+              Password does not meet minimum requirements.
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="field-width">
+            <mat-label>Confirm password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'"
+                   title="'Password' and 'Confirm password' must match"
+                   formControlName="confirmPassword"
+                   required>
+            <button mat-icon-button matSuffix
+                    (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error>
+              Password confirmation is required.
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
 
 
+    <mat-form-field class="field-width">
+      <mat-label>Telephone</mat-label>
+      <span matPrefix>+380 &nbsp;</span>
+      <input matInput
+             type="tel"
+             formControlName="phone"
+             placeholder="555-555-1234">
+      <mat-error>
+        Please enter a valid phone number.
+      </mat-error>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+
+    <p>
       <mat-form-field class="field-width">
-        <mat-label>Telephone</mat-label>
-        <span matPrefix>+38 &nbsp;</span>
-        <input type="tel" matInput [formControl]="phone" [errorStateMatcher]="matcher"
-               placeholder="555-555-1234">
-        <mat-error *ngIf="phone.hasError('pattern') && !phone.hasError('required')">
-          Please enter a valid phone number
-        </mat-error>
-        <mat-error *ngIf="phone.hasError('required')">
-          Phone number is <strong>required</strong>
-        </mat-error>
-        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-label>Address</mat-label>
+        <textarea matInput
+                  placeholder="Ex. Shevchenka Blvd, 234"
+                  formControlName="addressLine1">Shevchenka Blvd, 234
+        </textarea>
+        <mat-icon matSuffix>location_on</mat-icon>
       </mat-form-field>
+      <mat-form-field class="field-width">
+        <mat-label>Address 2</mat-label>
+        <textarea matInput
+                  formControlName="addressLine2">
+        </textarea>
+      </mat-form-field>
+    </p>
 
-
-      <p>
-        <mat-form-field class="field-width">
-          <mat-label>Address</mat-label>
-          <textarea matInput placeholder="Ex. Shevchenka Blvd, 234">Shevchenka Blvd, 234</textarea>
-          <mat-icon matSuffix>location_on</mat-icon>
-        </mat-form-field>
-        <mat-form-field class="field-width">
-          <mat-label>Address 2</mat-label>
-          <textarea matInput></textarea>
-        </mat-form-field>
-      </p>
-
-      <table class="field-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="field-width">
-              <mat-label>City</mat-label>
-              <input matInput placeholder="Ex. Cherkasy">
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="field-width">
-              <mat-label>Country</mat-label>
-              <input matInput placeholder="Ex. Ukraine">
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="field-width">
-              <mat-label>Postal Code</mat-label>
-              <input matInput #postalCode maxlength="5" placeholder="Ex. 18000" value="18000">
-              <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
-    </form>
+    <table class="field-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="field-width">
+            <mat-label>City</mat-label>
+            <input matInput
+                   placeholder="Ex. Cherkasy"
+                   formControlName="city">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="field-width">
+            <mat-label>Country</mat-label>
+            <input matInput
+                   placeholder="Ex. Ukraine"
+                   formControlName="country">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="field-width">
+            <mat-label>Postal Code</mat-label>
+            <input matInput #postalCode
+                   maxlength="5"
+                   placeholder="Ex. 18000"
+                   formControlName="postalCode">
+            <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
 
 
     <div>
-      <div>
-        <mat-radio-group
-          aria-label="Select an option" [(ngModel)]="gender"><b>Gender &nbsp;</b>
-          <mat-radio-button class="radio-button" *ngFor="let gender of genders" [value]="gender">
-            {{gender}}
-          </mat-radio-button>
-        </mat-radio-group>
-      </div>
-      <br>
-
-      <div>
-        <label><b>Your age group</b></label>
-        <mat-radio-group
-          aria-labelledby="radio-group-label"
-          class="radio-group"
-          [(ngModel)]="ageGroup">
-          <mat-radio-button class="radio-button" *ngFor="let ageGroup of ageGroups" [value]="ageGroup">
-            {{ageGroup}}
-          </mat-radio-button>
-        </mat-radio-group>
-      </div>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Indicate your day of birth</mat-label>
-        <input matInput [matDatepicker]="picker">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <br>
-
-      <p><b>Your favourite theatre genre:</b></p>
-      <mat-form-field class="genre-selector" appearance="fill">
-        <mat-label>Choose a genre</mat-label>
-        <mat-select [(value)]="selected" [(ngModel)]="genre">
-          <mat-option *ngFor="let genre of genres" [value]="genre">{{genre}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <p>
-        <mat-form-field class="field-width" appearance="outline">
-          <mat-label>Comments and suggestions</mat-label>
-          <textarea matInput placeholder="Your message" cols="30" rows="5"></textarea>
-          <mat-icon matSuffix>contact_mail</mat-icon>
-          <mat-hint>We would like to hear from you</mat-hint>
-        </mat-form-field>
-      </p>
-
-      <section>
-        <mat-checkbox
-          [(ngModel)]="checked"
-          [(indeterminate)]="indeterminate"
-          [labelPosition]="labelPosition"
-          [disabled]="disabled">
-          I would like to sign-up for promotion letters
-        </mat-checkbox>
-      </section>
+      <mat-radio-group formControlName="gender">
+        <label class="mx-3"><b>Gender &nbsp;</b></label>
+        <mat-radio-button class="radio-button" *ngFor="let gender of genders" [value]="gender">
+          {{gender}}
+        </mat-radio-button>
+      </mat-radio-group>
     </div>
-  </div>
+    <br>
+
+
+    <label><b>Your age group</b></label>
+    <mat-radio-group class="radio-group" formControlName="ageGroup">
+      <mat-radio-button class="radio-button" *ngFor="let ageGroup of ageGroups" [value]="ageGroup">
+        {{ageGroup}}
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Date of Birth</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+
+    <p><b>Your favourite theatre genre:</b></p>
+    <mat-form-field class="genre-selector" appearance="fill">
+      <mat-label>Choose a genre</mat-label>
+      <mat-select formControlName="genre">
+        <mat-option *ngFor="let genre of genres" [value]="genre">{{genre}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <p>
+      <mat-form-field class="field-width" appearance="outline">
+        <mat-label>Comments and suggestions</mat-label>
+        <textarea matInput placeholder="Your message" #userMessage cols="30" rows="5"
+                  formControlName="userMessage"></textarea>
+        <mat-icon matSuffix>contact_mail</mat-icon>
+        <mat-hint>We would like to hear from you</mat-hint>
+        <mat-hint align="end">{{userMessage.value.length}} / 250</mat-hint>
+      </mat-form-field>
+    </p>
+
+    <section>
+      <mat-checkbox formControlName="subscribeForLetters">
+        I would like to sign-up for promotion letters
+      </mat-checkbox>
+    </section>
+  </form>
+
+  <!--  {{registrationForm.value | json}}-->
+
+  <button type="submit" (click)="submitForm()" id="btn" mat-raised-button>Join our community</button>
 </div>
-
-
-<button class="btn" mat-raised-button>Join our community</button>

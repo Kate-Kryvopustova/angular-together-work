@@ -1,53 +1,58 @@
-import {Component} from '@angular/core';
-import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+import {Component, ViewEncapsulation} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ConfirmedValidator} from './confirmed.validator';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 
 
 export class FormComponent {
 
-  title = 'Create your Member profile and get first access to the very best of offers, inspiration and community.';
   value = '';
-  selected = '';
+  hide = true;
   gender: string;
-  genders: string[] = ['Male', 'Female', 'Prefer not to disclose'];
   genre: string;
+  genders: string[] = ['Male', 'Female', 'Prefer not to disclose'];
   genres: string[] = ['None', 'Comedy', 'Drama', 'Tragedy', 'Opera', 'Historical plays'];
-  ageGroup: string;
-  ageGroups: string[] = ['18-29', '30-44', '45+', 'prefer not to disclose'];
-  checked = false;
-  indeterminate = false;
-  disabled = false;
-  labelPosition: 'before' | 'after' = 'after';
+  ageGroups: string[] = ['18-29', '30-44', '45+', 'Prefer not to disclose'];
+  title = 'Create your Member profile and get first access to the very best of offers, inspiration and community.';
 
-  email = new FormControl('', [
-    Validators.required,
-    Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
-    Validators.email,
-  ]);
+  registrationForm: FormGroup;
 
-  phone = new FormControl('', [
-    Validators.pattern('^[0-9]{10}$'),
-    Validators.required
-  ]);
+  constructor(private fb: FormBuilder) {
+    this.createForm();
+  }
 
-  firstName = new FormControl('', [
-    Validators.minLength(3),
-    Validators.required
-  ]);
+  createForm(): void {
+    this.registrationForm = this.fb.group({
+        firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(3)]],
+        lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+        email: ['', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]],
+        password: ['', [Validators.required, Validators.pattern("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+        phone: ['', [Validators.required, Validators.pattern('^[0-9\-\+]{9,11}$')]],
+        addressLine1: [''],
+        addressLine2: [''],
+        city: [''],
+        country: [''],
+        postalCode: ['18000'],
+        gender: [''],
+        ageGroup: [''],
+        dateOfBirth: [''],
+        genre: [''],
+        userMessage: [''],
+        subscribeForLetters: ['']
+      },
+      {validator: ConfirmedValidator('password', 'confirmPassword') }, );
+  }
 
-  matcher = new MyErrorStateMatcher();
+  submitForm(): void {
+    console.log(this.registrationForm.value);
+    console.log(this.registrationForm.status);
+  }
 }
 
