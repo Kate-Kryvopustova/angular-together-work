@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {MatCardModule} from '@angular/material/card'
+import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
@@ -13,13 +13,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatDialogModule} from '@angular/material/dialog';
-import {MatPaginatorModule} from '@angular/material/paginator';
 import {NgxPaginationModule} from 'ngx-pagination';
 
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 
-import {environment} from '../environments/environment'; 
+import {environment} from '../environments/environment';
 
 import {AppComponent} from './app.component';
 import {HomeComponent} from './components/home/home.component';
@@ -53,7 +52,7 @@ import {PopUpEditComponent} from './components/list/pop-up-edit/pop-up-edit.comp
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule,    
+    BrowserAnimationsModule,
     MatCardModule,
     MatListModule,
     MatButtonModule,
@@ -66,7 +65,6 @@ import {PopUpEditComponent} from './components/list/pop-up-edit/pop-up-edit.comp
     MatDialogModule,
     NgxPaginationModule,
     AngularFirestoreModule,
-    MatPaginatorModule,
     AngularFireModule.initializeApp(environment),
   ],
   providers: [],

@@ -7,50 +7,59 @@ import {
   AngularFirestoreDocument
 } from '@angular/fire/firestore';
 
-import {MatSnackBar} from '@angular/material/snack-bar'
+import {FormBuilder, Validators} from '@angular/forms';
+
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
 
 import {PopUpAddComponent} from './pop-up-add/pop-up-add.component';
 import {PopUpEditComponent} from './pop-up-edit/pop-up-edit.component';
 import {PopUpDeleteComponent} from './pop-up-delete/pop-up-delete.component';
 import {IList} from '../../interface/list';
+import {UpdateListService} from '../../services/update-list.service';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.scss']
 })
 
 export class ListComponent implements OnInit {
 
-  p: number = 1;
+  robotForm = this.fb.group({
+    title : ['', Validators.required],
+    content: [''],
+    src: [''],
+    dateModified: [''],
+    id: [''],
+  });
+
+  p = 1;
+
   listCollection: AngularFirestoreCollection<IList>;
   allList: Observable<IList[]>;
   listDoc: AngularFirestoreDocument<IList>;
   inputId: string;
 
-  inputValue: IList = {
-    title: "",
-    content: "",
-    src: ""
-  };
+  editValue = false;
 
-  editValue: boolean = false;
-  
   constructor(
-    public angularFirestore: AngularFirestore, 
-    public snackBar: MatSnackBar, 
-    public dialog: MatDialog
-  ) { }
+    public angularFirestore: AngularFirestore,
+    public snackBar: MatSnackBar,
+    public dialog: MatDialog,
+    private fb: FormBuilder,
+    private updateListServise: UpdateListService,
+  ) {
+  }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.listCollection = this.angularFirestore.collection('List');
-    this.allList = this.angularFirestore.collection('List', ref => ref.orderBy('datemodified')).snapshotChanges().pipe(map(changes => {
+    this.allList = this.angularFirestore.collection('List', ref => ref.orderBy('dateModified')).snapshotChanges().pipe(map(changes => {
       return changes.map(a => {
         const data = a.payload.doc.data() as IList;
         data.id = a.payload.doc.id;
         return data;
-      })
+      });
     }));
   }
 
@@ -61,73 +70,63 @@ export class ListComponent implements OnInit {
       if (result) {
         this.addNewItem();
       } else {
-        this.inputValue.content = "";
-        this.inputValue.title = "";
+        this.robotForm.reset();
       }
     });
   }
 
-  openEditDialog(item): void {
+  openEditDialog(item: IList): void {
     const dialogRef = this.dialog.open(PopUpEditComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.editItem(item);
       } else {
-        this.inputValue.content = "";
-        this.inputValue.title = "";
+        this.robotForm.reset();
       }
     });
   }
 
-  openDeleteDialog(item): void {
+  openDeleteDialog(item: IList): void {
     const dialogRef = this.dialog.open(PopUpDeleteComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.deleteItem(item);
       } else {
-        this.inputValue.content = "";
-        this.inputValue.title = "";
+        this.robotForm.reset();
       }
     });
   }
 
   addNewItem(): void {
-    if (this.inputValue.title != "") {
-      this.inputValue.datemodified = new Date();      
-      this.inputValue.src = "https://robohash.org/" + this.inputValue.title;
-      this.listCollection.add(this.inputValue);
-      this.inputValue.content = "";
-      this.inputValue.title = "";
-      this.openSnackBar("Added Successfuly!", "");
-    } else {
-      this.openSnackBar("Need input name robot!", "");
-    }
+    const data = this.robotForm;
+    const robotsList = this.listCollection;
+    this.updateListServise.addItem(data, robotsList);
+
+    this.openSnackBar('Added Successfuly!', '');
   }
 
-  deleteItem(item): void {
+  deleteItem(item: IList): void {
     this.listDoc = this.angularFirestore.doc(`List/${item}`);
-    this.listDoc.delete();
-    this.openSnackBar("Robot Deleted!", "");
+    this.updateListServise.deleteItem(this.listDoc);
+    this.openSnackBar('Robot Deleted!', '');
   }
 
-  editItem(item): void {
-    this.inputValue.title = item.title;
-    this.inputValue.content = item.content;
+  editItem(item: IList): void {
+    const data = this.robotForm;
+    this.updateListServise.updateItem(data, item);
     this.editValue = true;
     this.inputId = item.id;
   }
 
   saveNewItem(): void {
-    if (this.inputValue.title != "") {
-      this.inputValue.datemodified = new Date();
+    if (this.robotForm.value.title !== '') {
+      const data = this.robotForm;
       this.listDoc = this.angularFirestore.doc(`List/${this.inputId}`);
-      this.listDoc.update(this.inputValue);
+      this.updateListServise.saveNewItem(data, this.listDoc);
       this.editValue = false;
-      this.inputValue.title = "";
-      this.inputValue.content = ""
-      this.openSnackBar("Updated Successfuly!", "");
+      this.openSnackBar('Updated Successfuly!', '');
     }
   }
 
@@ -135,6 +134,6 @@ export class ListComponent implements OnInit {
     this.snackBar.open(message, action, {
       duration: 2000,
       verticalPosition: 'top',
-    });   
-  } 
+    });
+  }
 }

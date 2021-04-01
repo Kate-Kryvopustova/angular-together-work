@@ -1,5 +1,6 @@
-<h1 mat-dialog-title>Add item?</h1>
+<h1 mat-dialog-title>Delete item?</h1>
 <div mat-dialog-content>Are you sure you want to delete the item? </div>
 <div mat-dialog-actions class="button">
-  <button mat-button mat-dialog-close [mat-dialog-close]="true">Yes</button>
+  <button mat-button mat-dialog-close>Cansel</button>
+  <button mat-button mat-dialog-close [mat-dialog-close]="true" cdkFocusInitial>Yes</button>
 </div>
