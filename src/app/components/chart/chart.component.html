@@ -1,1 +1,37 @@
+<app-nav></app-nav>
+
 <p>Chart component</p>
+
+<input type="number" [formControl]='arrInputControl' #qwe>
+<button (click)="addValue()">Add</button>
+
+<br />
+
+<button *ngIf="condition" (click)="getFunc('line')">line</button>
+<button *ngIf="condition" (click)="getFunc('radar')">radar</button>
+<button *ngIf="condition" (click)="getFunc('bar')">bar</button>
+<button *ngIf="condition" (click)="getFunc('pie')">pie</button>
+<button *ngIf="condition" (click)="popupCall()">clear</button>
+<br />
+
+<div id="container" *ngIf="condition">
+  <div id="divDescription">
+    <p>{{desription}}</p>
+  </div>
+  <div id="divChart">
+    <canvas mdbChart  width="200" height="200" id="myChart"></canvas>
+  </div>
+</div>
+
+
+<br />
+
+<div class="bg-modal">
+  <div class="popup" *ngIf="conditionPopup">
+    <p>clear the array?</p>
+    <div>
+      <button (click)="clearLocalDatas()">yes</button>
+      <button (click)="closePopup()">nooo</button>
+    </div>
+  </div>
+</div>
