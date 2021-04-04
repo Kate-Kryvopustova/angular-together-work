@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from "./components/home/home.component";
-import {ChartComponent} from "./components/chart/chart.component";
-import {FormComponent} from "./components/form/form.component";
-import {GalleryComponent} from "./components/gallery/gallery.component";
-import {ListComponent} from "./components/list/list.component";
+import {HomeComponent} from './components/home/home.component';
+import {ChartComponent} from './components/chart/chart.component';
+import {FormComponent} from './components/form/form.component';
+import {GalleryComponent} from './components/gallery/gallery.component';
+import {ListComponent} from './components/list/list.component';
 
 
 const routes: Routes = [

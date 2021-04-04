@@ -9,11 +9,11 @@ import {ConfirmedValidator} from './confirmed.validator';
   encapsulation: ViewEncapsulation.None,
 })
 
-
 export class FormComponent {
 
   value = '';
   hide = true;
+  submitted = false;
   gender: string;
   genre: string;
   genders: string[] = ['Male', 'Female', 'Prefer not to disclose'];
@@ -30,10 +30,10 @@ export class FormComponent {
   createForm(): void {
     this.registrationForm = this.fb.group({
         firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(3)]],
-        lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+        lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(3)]],
         email: ['', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]],
-        password: ['', [Validators.required, Validators.pattern("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")]],
-        confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+        password: ['', [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$')]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
         phone: ['', [Validators.required, Validators.pattern('^[0-9\-\+]{9,11}$')]],
         addressLine1: [''],
         addressLine2: [''],
@@ -44,15 +44,23 @@ export class FormComponent {
         ageGroup: [''],
         dateOfBirth: [''],
         genre: [''],
-        userMessage: [''],
+        userMessage: ['', Validators.maxLength(250)],
         subscribeForLetters: ['']
       },
-      {validator: ConfirmedValidator('password', 'confirmPassword') }, );
+      {validator: ConfirmedValidator('password', 'confirmPassword')},);
   }
 
   submitForm(): void {
-    console.log(this.registrationForm.value);
-    console.log(this.registrationForm.status);
+    if (this.registrationForm.valid) {
+      console.log(this.registrationForm.value);
+      alert('Your data has been submitted successfully!');
+      this.registrationForm.reset();
+    } else {
+      Object.keys(this.registrationForm.controls).forEach(field => {
+        const control = this.registrationForm.get(field);
+        control.markAsTouched({onlySelf: true});
+      });
+    }
   }
 }
 

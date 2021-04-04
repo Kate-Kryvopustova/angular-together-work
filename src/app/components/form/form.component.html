@@ -10,12 +10,19 @@
         <td>
           <mat-form-field class="field-width">
             <mat-label>First Name</mat-label>
-            <input matInput class="tooltip"
+            <input matInput
+                   class="tooltip"
                    title="First name must contain at least 3 letters"
                    formControlName="firstName"
                    required>
-            <mat-error>
-              Please enter a valid first name.
+            <mat-error *ngIf="registrationForm.get('firstName').hasError('required')">
+              First name is required
+            </mat-error>
+            <mat-error *ngIf="registrationForm.get('firstName').hasError('minlength')">
+              First name should not be less than 3 letters
+            </mat-error>
+            <mat-error *ngIf="registrationForm.get('firstName').hasError('pattern')">
+              First name should not contain special characters
             </mat-error>
           </mat-form-field>
         </td>
@@ -25,8 +32,14 @@
             <input matInput
                    formControlName="lastName"
                    required>
-            <mat-error>
-              Please enter a valid last name.
+            <mat-error *ngIf="registrationForm.get('lastName').hasError('required')">
+              Last name is required
+            </mat-error>
+            <mat-error *ngIf="registrationForm.get('lastName').hasError('minlength')">
+              Last name should not be less than 3 letters
+            </mat-error>
+            <mat-error *ngIf="registrationForm.get('lastName').hasError('pattern')">
+              Last name should not contain special characters
             </mat-error>
           </mat-form-field>
         </td>
@@ -41,9 +54,10 @@
              formControlName="email"
              placeholder="Ex. name@example.com"
              required>
-      <mat-hint>Enter a valid email address</mat-hint>
-      <mat-error>
-        Please enter a valid email address.
+      <mat-hint>Email address</mat-hint>
+      <mat-error
+        *ngIf="registrationForm.get('email').hasError('required') || registrationForm.get('email').hasError('pattern')">
+        Valid email is required
       </mat-error>
     </mat-form-field>
 
@@ -61,8 +75,11 @@
                     [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <mat-error>
-              Password does not meet minimum requirements.
+            <mat-error *ngIf="registrationForm.get('password').hasError('required')">
+              Password is required
+            </mat-error>
+            <mat-error *ngIf="registrationForm.get('password').hasError('pattern')">
+              Minimum 8 characters: 1 uppercase letter, 1 lowercase letter, 1 number, 1 special character
             </mat-error>
           </mat-form-field>
         </td>
@@ -79,27 +96,30 @@
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
             <mat-error>
-              Password confirmation is required.
+              'Password' and 'Confirm password' must match
             </mat-error>
           </mat-form-field>
         </td>
       </tr>
     </table>
 
-
-    <mat-form-field class="field-width">
-      <mat-label>Telephone</mat-label>
-      <span matPrefix>+380 &nbsp;</span>
-      <input matInput
-             type="tel"
-             formControlName="phone"
-             placeholder="555-555-1234">
-      <mat-error>
-        Please enter a valid phone number.
-      </mat-error>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
-
+    <div class="phone-field">
+      <mat-form-field class="field-width">
+        <mat-label>Telephone</mat-label>
+        <span matPrefix>+380 &nbsp;</span>
+        <input matInput
+               type="tel"
+               formControlName="phone"
+               placeholder="1234567890">
+        <mat-error *ngIf="registrationForm.get('phone').hasError('required')">
+          Please enter a valid phone number
+        </mat-error>
+        <mat-error *ngIf="registrationForm.get('phone').hasError('pattern')">
+          Phone number should not contain letters and special characters, and should not be longer than 11 digits
+        </mat-error>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+    </div>
 
     <p>
       <mat-form-field class="field-width">
@@ -192,6 +212,9 @@
         <mat-icon matSuffix>contact_mail</mat-icon>
         <mat-hint>We would like to hear from you</mat-hint>
         <mat-hint align="end">{{userMessage.value.length}} / 250</mat-hint>
+        <mat-error *ngIf="registrationForm.get('userMessage').hasError('maxlength')">
+          Please do not exceed the limit of 250 characters
+        </mat-error>
       </mat-form-field>
     </p>
 
