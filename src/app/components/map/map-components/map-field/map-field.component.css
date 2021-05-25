@@ -23,6 +23,7 @@
 
 .map-field-menu input {
   width: 15px;
+  cursor: pointer;
 }
 
 .map-field-menu label {

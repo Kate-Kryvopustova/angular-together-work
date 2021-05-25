@@ -1,8 +1,10 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
-import {environment} from "../../../../environments/environment";
-import {TMarker} from "../map-types/map-types";
-import {Subject} from "rxjs";
+import { environment } from 'src/environments/environment';
+import { TMarker } from '../map-types/map-interfaces';
+import { Subject } from 'rxjs';
+import redIcon from 'src/assets/images/map-icons/redIcon.png';
+import blueIcon from 'src/assets/images/map-icons/blueIcon.png';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class MapService {
   mapboxgl = mapboxgl;
   mapField!: mapboxgl.Map;
 
-  //default values
+  // default values
   style = 'mapbox://styles/mapbox/streets-v11';
   lat = 49.442;
   lng = 32.06;
@@ -26,7 +28,7 @@ export class MapService {
   }
 
   addMarker(marker: TMarker) {
-    this.markerList = [...this.markerList, marker];
+    this.markerList = [ ...this.markerList, marker ];
     this.markerList$.next(this.markerList);
   }
 
@@ -41,6 +43,23 @@ export class MapService {
 
   getMarkerList() {
     return this.markerList$.asObservable();
+  }
+
+  setIcon(id?) {
+    this.markerList.forEach(marker => {
+      const element: any = document.getElementById(`${marker.id}`);
+      if (id) {
+        if (marker.id === id) {
+          this.setMarkerActive(id);
+          element.src = redIcon;
+        } else {
+          element.src = blueIcon;
+        }
+      } else {
+        element.src = blueIcon;
+        this.setMarkerActive(null);
+      }
+    });
   }
 
   setLatLng(lat: number, lng: number) {
@@ -78,7 +97,7 @@ export class MapService {
       container: 'map',
       style: this.style,
       zoom: this.zoom,
-      center: [this.lng, this.lat],
+      center: [ this.lng, this.lat ]
     });
     this.mapField.addControl(new mapboxgl.NavigationControl());
   }

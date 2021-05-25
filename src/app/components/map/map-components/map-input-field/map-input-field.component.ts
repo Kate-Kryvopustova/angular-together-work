@@ -1,19 +1,19 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import * as mapboxgl from "mapbox-gl";
-import {TMarker} from "../../map-types/map-types";
-import {MapService} from "../../map-services/map.service";
-import blueIcon from '../../map-services/icons/blueIcon.png';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import * as mapboxgl from 'mapbox-gl';
+import { TMarker } from '../../map-types/map-interfaces';
+import { MapService } from '../../map-services/map.service';
+import blueIcon from 'src/assets/images/map-icons/blueIcon.png';
 
 @Component({
   selector: 'app-map-input-field',
   templateUrl: './map-input-field.component.html',
-  styleUrls: ['./map-input-field.component.css']
+  styleUrls: [ './map-input-field.component.css' ]
 })
 export class MapInputFieldComponent implements OnInit {
   markerList: TMarker[];
   @Input() isMarkerForm;
 
-  @Output() onCloseForm = new EventEmitter();
+  @Output() closeForm = new EventEmitter();
   @Output() setMarkerList = new EventEmitter();
 
   lat: number;
@@ -21,7 +21,8 @@ export class MapInputFieldComponent implements OnInit {
   markerName: string;
   markerDes: string;
 
-  constructor(public map: MapService) {}
+  constructor(public map: MapService) {
+  }
 
   ngOnInit(): void {
     this.lat = this.map.lat;
@@ -32,7 +33,7 @@ export class MapInputFieldComponent implements OnInit {
 
   onClickCloseForm() {
     this.isMarkerForm = false;
-    this.onCloseForm.emit(this.isMarkerForm);
+    this.closeForm.emit(this.isMarkerForm);
   }
 
   onChangeCoords(lat, lng) {
@@ -62,7 +63,7 @@ export class MapInputFieldComponent implements OnInit {
     if (markerName && markerDes) {
       this.addPoint(lng, lat, id);
       this.isMarkerForm = false;
-      this.onCloseForm.emit(this.isMarkerForm);
+      this.closeForm.emit(this.isMarkerForm);
       const newMarker: TMarker = {
         id,
         lng,
@@ -82,8 +83,8 @@ export class MapInputFieldComponent implements OnInit {
     icon.src = blueIcon;
 
     new mapboxgl.Marker(icon, {
-      draggable: true,
-    }).setLngLat([lng, lat])
+      draggable: true
+    }).setLngLat([ lng, lat ])
       .addTo(this.map.mapField);
   }
 }

@@ -90,6 +90,7 @@
   font-size: 18px;
   transition: ease 200ms;
   box-shadow: 0 0 5px #007bff;
+  cursor: pointer;
 }
 
 .btn-add-marker:hover {

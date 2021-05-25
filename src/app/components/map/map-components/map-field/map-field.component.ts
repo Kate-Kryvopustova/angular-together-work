@@ -1,13 +1,11 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {MapService} from "../../map-services/map.service";
-import {TMarker} from "../../map-types/map-types";
-import redIcon from "../../map-services/icons/redIcon.png";
-import blueIcon from "../../map-services/icons/blueIcon.png";
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { MapService } from '../../map-services/map.service';
+import { TMapEvent, TMarker } from '../../map-types/map-interfaces';
 
 @Component({
   selector: 'app-map-field',
   templateUrl: './map-field.component.html',
-  styleUrls: ['./map-field.component.css']
+  styleUrls: [ './map-field.component.css' ]
 })
 export class MapFieldComponent implements OnInit {
   markerList: TMarker[];
@@ -26,7 +24,7 @@ export class MapFieldComponent implements OnInit {
   showMapPopUpEvent() {
     this.map.mapField.on('contextmenu', e => {
       if (!this.isMarkerForm) {
-        let { lng, lat } = e.lngLat;
+        const { lng, lat } = e.lngLat;
         this.map.setLatLng(lat, lng);
         this.isMarkerForm = true;
       }
@@ -34,23 +32,12 @@ export class MapFieldComponent implements OnInit {
   }
 
   selectIconEvent() {
-    this.map.mapField.on('click', e => {
-      const id = Number(e.originalEvent.target['id']);
-
-      this.markerList.forEach(marker => {
-        const element = document.getElementById(`${marker.id}`);
-        if (id) {
-          if (marker.id === id) {
-            this.map.setMarkerActive(id);
-            element['src'] = redIcon;
-          } else {
-            element['src'] = blueIcon;
-          }
-        } else {
-          element['src'] = blueIcon;
-          this.map.setMarkerActive(null);
-        }
-      });
+    this.map.mapField.on('click', (e: TMapEvent) => {
+      const id = Number(e.originalEvent.target.id);
+      if (!this.markerList) {
+        return;
+      }
+      this.map.setIcon(id);
     });
   }
 

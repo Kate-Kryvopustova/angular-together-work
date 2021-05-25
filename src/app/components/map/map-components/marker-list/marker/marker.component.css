@@ -28,6 +28,7 @@
   transition: ease 200ms;
   background-color: red;
   color: white;
+  cursor: pointer;
 }
 
 .marker-card:hover button {
