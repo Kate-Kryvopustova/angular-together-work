@@ -62,6 +62,10 @@
   justify-content: center;
 }
 
+.btn {
+  cursor: pointer;
+}
+
 @media (max-width: 570px) {
   .form {
     display: flex;
