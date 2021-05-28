@@ -5,7 +5,7 @@ import {ConfirmedValidator} from './confirmed.validator';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css'],
+  styleUrls: ['./form.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 
@@ -47,7 +47,7 @@ export class FormComponent {
         userMessage: ['', Validators.maxLength(250)],
         subscribeForLetters: ['']
       },
-      {validator: ConfirmedValidator('password', 'confirmPassword')},);
+      {validator: ConfirmedValidator('password', 'confirmPassword')}, );
   }
 
   submitForm(): void {
