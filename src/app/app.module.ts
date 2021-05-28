@@ -29,9 +29,7 @@ import {GalleryComponent} from './components/gallery/gallery.component';
 import {ChartComponent} from './components/chart/chart.component';
 import {AppRoutingModule} from './app-routing.module';
 import {NavComponent} from './components/nav/nav.component';
-import {HeaderComponent} from './components/header/header.component';
-import {PhotosComponent} from "./components/photos/photos.component";
-import {PopUpAddComponent} from './components/list/pop-up-add/pop-up-add.component';
+import {PhotosComponent} from './components/photos/photos.component';
 import {PopUpDeleteComponent} from './components/list/pop-up-delete/pop-up-delete.component';
 import {PopUpEditComponent} from './components/list/pop-up-edit/pop-up-edit.component';
 
@@ -44,8 +42,6 @@ import {PopUpEditComponent} from './components/list/pop-up-edit/pop-up-edit.comp
     GalleryComponent,
     ChartComponent,
     NavComponent,
-    HeaderComponent,
-    PopUpAddComponent,
     PopUpDeleteComponent,
     PopUpEditComponent,
     PhotosComponent

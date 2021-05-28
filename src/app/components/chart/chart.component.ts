@@ -10,56 +10,56 @@ import { Chart } from 'chart.js';
 
 export class ChartComponent implements OnInit {
 
-  condition: boolean = true;
-  conditionPopup: boolean = false;
-  desription: string = '';
-  inputValue: string = '';
+  condition = true;
+  conditionPopup = false;
+  desription = '';
+  inputValue = '';
   arr = [];
   myChart: any = null;
   colorArr = ['rgba(54, 162, 235, 0.2)'];
   arrInputControl: FormControl;
-  
+
   ngOnInit(): void {
     this.arrInputControl = new FormControl();
-    this.arrInputControl.valueChanges.subscribe((el) => this.arr.push(el));   
+    this.arrInputControl.valueChanges.subscribe((el) => this.arr.push(el));
   }
 
   constructor() {}
-  
-  popupCall() {
+
+  popupCall(): void {
     this.conditionPopup = true;
   }
-  closePopup() {
+  closePopup(): void {
     this.conditionPopup = false;
   }
 
-  addDesription() {
+  addDesription(): void {
     this.desription = `Diagram of [ ${this.arr.join(', ')} ] values.`;
   }
 
-  addValue(){
+  addValue(): void {
      this.arrInputControl = new FormControl();
-     this.arrInputControl.valueChanges.subscribe((el) => this.arr.push(el)); 
+     this.arrInputControl.valueChanges.subscribe((el) => this.arr.push(el));
      console.log(this.arr);
      this.inputValue = null;
-      this.colorArr.push(this.makeRandomColor());
-      this.addDesription();
-      if (this.arr.length > 1) {
+     this.colorArr.push(this.makeRandomColor());
+     this.addDesription();
+     if (this.arr.length > 1) {
         this.condition = true;
         this.getFunc('line');
       }
-  } 
+  }
 
-  private makeRandomColor() {
+  private makeRandomColor(): any {
     return `rgba(${Math.round(Math.random() * 255)}, ${Math.round(
       Math.random() * 255
     )}, ${Math.round(Math.random() * 255)})`;
   }
 
-  getFunc(typeOfGraph) {
+  getFunc(typeOfGraph): void {
     if (this.myChart) {
       this.myChart.destroy();
-    }  
+    }
     this.myChart = new Chart('myChart',  {
       type: typeOfGraph,
       data: {
@@ -77,7 +77,7 @@ export class ChartComponent implements OnInit {
   }
 
   // TODO: combine some properties into logical objects
-  clearLocalDatas() {
+  clearLocalDatas(): void {
     this.arr = [];
     this.myChart.destroy();
     this.colorArr = ['rgba(54, 162, 235, 0.2)'];
