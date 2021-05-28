@@ -1,39 +1,60 @@
+.container-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.form__button {
+  margin-left: 20px;
+}
+
+.container-control-graphic {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.control-graphic {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin-top: 40px;
+}
+
+.graphhic__button {
+  margin: 10px;
+}
+
+#divDescription{
+  text-align: center;
+}
+
 #divChart {
-    display: block;
-    width: 500px;
-    height: 200px;
-  }
-  
-  #divDescription{
-    display: block;
-  }
-  
-  .container {
-    
-    width: 800px;
-    height: 200px;
-    border: 1px;
-    padding: .5rem 1rem;
-    border: 1px dashed #ccc;
-    margin-bottom: 1rem;
-  }
-  
-  .popup {
-    height: 50px;
-    width: 100px;
-    background-color: rgb(202, 188, 188);
-    text-align: center;
-    border: 2px;
-    padding: 20px;
-    position: absolute;
-    justify-content: center;
-    border-radius: 4px;
-    position: fixed;
-    width: 500px;
-    height: 200px;
-    top: 50%;
-    left: 50%;
-    margin-top: -100px;
-    margin-left: -250px;
-  }
-  
+  display: block;
+  width: 500px;
+  height: 200px;
+}
+
+.container {
+  width: 800px;
+  height: 200px;
+  padding: .5rem 1rem;
+  border: 1px dashed #ccc;
+  margin-bottom: 1rem;
+}
+
+.popup {
+  background-color: rgb(202, 188, 188);
+  text-align: center;
+  border: 2px;
+  padding: 20px;
+  justify-content: center;
+  border-radius: 4px;
+  position: fixed;
+  width: 500px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -250px;
+}
