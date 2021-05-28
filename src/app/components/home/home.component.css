@@ -1,0 +1,44 @@
+.navigation {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content__image {
+  width: 100px;
+  height: 100px;
+}
+
+.link {
+  margin: 10px;
+  width: 400px; 
+  height: 150px; 
+  background-color: antiquewhite; 
+  border-radius: 15px;
+  text-decoration: none;
+  color: rgb(49, 49, 49); 
+  -webkit-transition: all 0.3s ease;;
+  -moz-transition: all 0.3s ease;;
+  -o-transition: all 0.3s ease;;
+  transition: all 0.3s ease;
+}
+
+.link:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+  background:#53ea93;
+}
+
+.link__content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.content__info {
+  align-self: center;
+  font-style: italic;
+  font-size: large;
+}
