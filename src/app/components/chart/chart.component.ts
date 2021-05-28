@@ -40,7 +40,6 @@ export class ChartComponent implements OnInit {
   addValue(): void {
      this.arrInputControl = new FormControl();
      this.arrInputControl.valueChanges.subscribe((el) => this.arr.push(el));
-     console.log(this.arr);
      this.inputValue = null;
      this.colorArr.push(this.makeRandomColor());
      this.addDesription();
