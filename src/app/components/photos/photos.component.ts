@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {PhotosService} from "../../services/photos.service";
+import { Component, Input, OnInit } from '@angular/core';
+import { PhotosService } from '../../services/photos.service';
 
 @Component({
   selector: 'app-photos',
@@ -29,11 +29,11 @@ export class PhotosComponent implements OnInit {
     });
   }
 
-  onMouseEnter(i) {
+  onMouseEnter(i): void {
     this.hoverIndex = i;
   }
 
-  onMouseLeave(i) {
+  onMouseLeave(i): void {
     this.hoverIndex = null;
   }
 }

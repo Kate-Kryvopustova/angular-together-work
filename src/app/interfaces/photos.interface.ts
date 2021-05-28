@@ -5,5 +5,5 @@ export interface Photos {
     urls: {
       thumb: string;
     }
-  }[]
+  }[];
 }

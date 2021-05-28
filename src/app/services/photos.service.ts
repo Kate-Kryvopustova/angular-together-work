@@ -1,8 +1,9 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {pluck} from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { pluck } from 'rxjs/operators';
 
-import {Photos} from "../interfaces/photos.interface";
+import { Photos } from '../interfaces/photos.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class PhotosService {
   constructor(private http: HttpClient) {
   }
 
-  public search(term: string) {
+  public search(term: string): Observable<any> {
     return this.http.get<Photos>('https://api.unsplash.com/search/photos', {
       params: {
         query: term,
@@ -22,6 +23,6 @@ export class PhotosService {
       headers: {
         Authorization: 'Client-ID nO1myPFj1GoMC5ZE5txbOrbHIoPdDz1lalgArTvpDmI'
       }
-    }).pipe(pluck('results'))
+    }).pipe(pluck('results'));
   }
 }

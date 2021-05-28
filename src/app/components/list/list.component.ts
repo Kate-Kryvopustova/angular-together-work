@@ -13,7 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { PopUpEditComponent } from './pop-up-edit/pop-up-edit.component';
 import { PopUpDeleteComponent } from './pop-up-delete/pop-up-delete.component';
-import { IList } from '../../interface/list';
+import { IList } from '../../interfaces/list';
 import { UpdateListService } from '../../services/update-list.service';
 
 @Component({
