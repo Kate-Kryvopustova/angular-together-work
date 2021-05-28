@@ -34,7 +34,12 @@ export class ListComponent implements OnInit {
     id: [''],
   });
 
-  p = 1;
+  config = {
+    currentPage: 1,
+    itemsPerPage: 4
+  };
+
+  data;
 
   listCollection: AngularFirestoreCollection<IList>;
   allList: Observable<IList[]>;
@@ -61,6 +66,10 @@ export class ListComponent implements OnInit {
         return data;
       });
     }));
+    this.allList.subscribe((result) => (
+        this.data = result
+      )
+    );
   }
 
   openAddDialog(): void {
@@ -111,6 +120,10 @@ export class ListComponent implements OnInit {
     this.listDoc = this.angularFirestore.doc(`List/${item}`);
     this.updateListServise.deleteItem(this.listDoc);
     this.openSnackBar('Robot Deleted!', '');
+
+    if (this.data.length === this.config.itemsPerPage + 1) {
+      this.config.currentPage = 1;
+    }
   }
 
   editItem(item: IList): void {
