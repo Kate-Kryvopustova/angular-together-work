@@ -1,44 +1,42 @@
-<body>
-	<app-header></app-header>
-	<div class="wrapped">
-		<mat-card>
-			<form [formGroup]="robotForm" (ngSubmit)="openAddDialog()" class="form">
+<app-header></app-header>
+<div class="wrapped">
+	<mat-card>
+		<form [formGroup]="robotForm" (ngSubmit)="openAddDialog()" class="form">
 
-				<mat-form-field class="form__input">
-					<input matInput placeholder="Enter name robot" formControlName="title" required>
-				</mat-form-field>
+			<mat-form-field class="form__input">
+				<input matInput placeholder="Enter name robot" formControlName="title" required>
+			</mat-form-field>
 
-				<mat-form-field class="form__input">
-					<input matInput placeholder="Enter description robot" formControlName="content">
-				</mat-form-field>
+			<mat-form-field class="form__input">
+				<input matInput placeholder="Enter description robot" formControlName="content">
+			</mat-form-field>
 
-				<button mat-button [disabled]="!robotForm.valid" type="submit" *ngIf="!editValue">Add</button>
-				<button mat-button (click)="saveNewItem()" *ngIf="editValue">Save</button>
-			</form>
-        <mat-list *ngFor="let item of (allList | async) | paginate: config">
+			<button mat-button [disabled]="!robotForm.valid" type="submit" *ngIf="!editValue">Add</button>
+			<button mat-button (click)="saveNewItem()" *ngIf="editValue">Save</button>
+		</form>
+       <mat-list *ngFor="let item of (allList | async) | paginate: config">
 
-          <mat-toolbar class="listItem" color="primary">
+         <mat-toolbar class="listItem" color="primary">
 
-            <div class="listItem__wrapped">
-              <img class='image' [src]="item.src">
-              <mat-toolbar class="container" color="primary">
-                <div class="info">
-                  <span class="title">{{item.title}}</span>
-                  <span class="content">{{item.content}}</span>
-                </div>
-              </mat-toolbar>
-            </div>
+           <div class="listItem__wrapped">
+             <img class='image' [src]="item.src" alt="item logo">
+             <mat-toolbar class="container" color="primary">
+               <div class="info">
+                 <span class="title">{{item.title}}</span>
+                 <span class="content">{{item.content}}</span>
+               </div>
+             </mat-toolbar>
+           </div>
 
-            <div class="listItem__navigation">
-              <mat-icon (click)="openEditDialog(item)" class="btn"> edit</mat-icon>
-              <mat-icon (click)="openDeleteDialog(item.id)" class="btn">delete</mat-icon>
-            </div>
+           <div class="listItem__navigation">
+             <mat-icon (click)="openEditDialog(item)" class="btn"> edit</mat-icon>
+             <mat-icon (click)="openDeleteDialog(item.id)" class="btn">delete</mat-icon>
+           </div>
 
-          </mat-toolbar>
-        </mat-list>
+         </mat-toolbar>
+       </mat-list>
 
-			<pagination-controls class="pagination-controls" (pageChange)="config.currentPage = $event"></pagination-controls>
+		<pagination-controls class="pagination-controls" (pageChange)="config.currentPage = $event"></pagination-controls>
 
-		</mat-card>
-	</div>
-</body>
+	</mat-card>
+</div>
