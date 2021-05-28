@@ -20,6 +20,7 @@
   margin: 0 10px;
   font-style: italic;
   text-align: center;
+  min-width: 200px;
   width: 95%;
   height: 55px;
   background-color: #FFEBCD;
@@ -29,5 +30,12 @@
 
 .marker-list-title h2 {
   padding-top: 10px;
+  min-width: 200px;
   margin: 0;
+}
+
+@media (max-width: 560px) {
+  .marker-list-wrapper {
+    margin-top: 10px;
+  }
 }
