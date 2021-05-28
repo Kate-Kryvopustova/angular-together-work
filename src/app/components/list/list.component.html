@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="wrapped">
 	<mat-card>
-		<form [formGroup]="robotForm" (ngSubmit)="openAddDialog()" class="form">
+		<form [formGroup]="robotForm" (ngSubmit)="addNewItem()" class="form">
 
 			<mat-form-field class="form__input">
 				<input matInput placeholder="Enter name robot" formControlName="title" required>
@@ -22,8 +22,8 @@
              <img class='image' [src]="item.src" alt="item logo">
              <mat-toolbar class="container" color="primary">
                <div class="info">
-                 <span class="title">{{item.title}}</span>
-                 <span class="content">{{item.content}}</span>
+                 <span class="title">{{ item.title }}</span>
+                 <span class="content">{{ item.content }}</span>
                </div>
              </mat-toolbar>
            </div>

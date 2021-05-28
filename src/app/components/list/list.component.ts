@@ -1,22 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {map} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
   AngularFirestoreDocument
 } from '@angular/fire/firestore';
 
-import {FormBuilder, Validators} from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatDialog} from '@angular/material/dialog';
-
-import {PopUpAddComponent} from './pop-up-add/pop-up-add.component';
-import {PopUpEditComponent} from './pop-up-edit/pop-up-edit.component';
-import {PopUpDeleteComponent} from './pop-up-delete/pop-up-delete.component';
-import {IList} from '../../interface/list';
-import {UpdateListService} from '../../services/update-list.service';
+import { PopUpEditComponent } from './pop-up-edit/pop-up-edit.component';
+import { PopUpDeleteComponent } from './pop-up-delete/pop-up-delete.component';
+import { IList } from '../../interface/list';
+import { UpdateListService } from '../../services/update-list.service';
 
 @Component({
   selector: 'app-list',
@@ -38,8 +36,7 @@ export class ListComponent implements OnInit {
     currentPage: 1,
     itemsPerPage: 4
   };
-
-  data;
+  itemsInList;
 
   listCollection: AngularFirestoreCollection<IList>;
   allList: Observable<IList[]>;
@@ -67,21 +64,9 @@ export class ListComponent implements OnInit {
       });
     }));
     this.allList.subscribe((result) => (
-        this.data = result
+        this.itemsInList = result
       )
     );
-  }
-
-  openAddDialog(): void {
-    const dialogRef = this.dialog.open(PopUpAddComponent);
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.addNewItem();
-      } else {
-        this.robotForm.reset();
-      }
-    });
   }
 
   openEditDialog(item: IList): void {
@@ -117,11 +102,11 @@ export class ListComponent implements OnInit {
   }
 
   deleteItem(item: IList): void {
-    this.listDoc = this.angularFirestore.doc(`List/${item}`);
+    this.listDoc = this.angularFirestore.doc(`List/${ item }`);
     this.updateListServise.deleteItem(this.listDoc);
     this.openSnackBar('Robot Deleted!', '');
 
-    if (this.data.length === this.config.itemsPerPage + 1) {
+    if (this.itemsInList.length === this.config.itemsPerPage + 1) {
       this.config.currentPage = 1;
     }
   }
@@ -136,7 +121,7 @@ export class ListComponent implements OnInit {
   saveNewItem(): void {
     if (this.robotForm.value.title !== '') {
       const data = this.robotForm;
-      this.listDoc = this.angularFirestore.doc(`List/${this.inputId}`);
+      this.listDoc = this.angularFirestore.doc(`List/${ this.inputId }`);
       this.updateListServise.saveNewItem(data, this.listDoc);
       this.editValue = false;
       this.openSnackBar('Updated Successfuly!', '');
