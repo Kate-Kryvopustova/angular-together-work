@@ -1,0 +1,169 @@
+.navigation {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content__image {
+  width: 100px;
+  height: 100px;
+}
+
+.link {
+  margin: 10px;
+  width: 400px;
+  height: 150px;
+  background-color: antiquewhite;
+  border-radius: 15px;
+  text-decoration: none;
+  color: rgb(49, 49, 49);
+  -webkit-transition: all 0.3s ease;;
+  -moz-transition: all 0.3s ease;;
+  -o-transition: all 0.3s ease;;
+  transition: all 0.3s ease;
+}
+
+.link:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+  background:#53ea93;
+}
+
+.link__content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.content__info {
+  align-self: center;
+  font-style: italic;
+  font-size: large;
+}
+
+/*Background*/
+
+.background-container {
+  min-height: 100%;
+  min-width: 781px;
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  @keyframes boxMove {
+    0% {
+      transform: scale(var(--initialScale)) rotate(var(--initialAngle));
+    }
+    100% {
+      transform: scale(var(--endScale)) rotate(var(--endAngle));
+    }
+  }
+
+  .box {
+    top: calc(50% - 10vmin);
+    left: calc(50% - 10vmin);
+    width: 20vmin;
+    height: 20vmin;
+    position: absolute;
+    background-color: #f9ebd0;
+    background-image: radial-gradient(circle at 50% 10%, #acd6e7 5%, transparent 70%),
+    radial-gradient(circle at 50% 90%, #d3dee7 10%, transparent);
+    border-radius: 3vmin;
+    box-shadow: rgba(83, 98, 110, .9);
+    animation: boxMove 6s linear infinite;
+  }
+
+  .box0 {
+    --initialScale: 0.30;
+    --endScale: 1.00;
+    --initialAngle: +10deg;
+    --endAngle: +00deg;
+  }
+
+  .box1 {
+    --initialScale: 1.00;
+    --endScale: 1.50;
+    --initialAngle: +00deg;
+    --endAngle: -10deg;
+  }
+
+  .box2 {
+    --initialScale: 1.50;
+    --endScale: 2.00;
+    --initialAngle: -10deg;
+    --endAngle: -20deg;
+  }
+
+  .box3 {
+    --initialScale: 2.00;
+    --endScale: 3.00;
+    --initialAngle: -20deg;
+    --endAngle: -25deg;
+  }
+
+  .box4 {
+    --initialScale: 3.00;
+    --endScale: 4.00;
+    --initialAngle: -25deg;
+    --endAngle: -30deg;
+  }
+
+  .box5 {
+    --initialScale: 4.00;
+    --endScale: 5.00;
+    --initialAngle: -30deg;
+    --endAngle: -40deg;
+  }
+
+  .box6 {
+    --initialScale: 5.00;
+    --endScale: 6.50;
+    --initialAngle: -40deg;
+    --endAngle: -50deg;
+  }
+
+  .box7 {
+    --initialScale: 6.50;
+    --endScale: 8.00;
+    --initialAngle: -50deg;
+    --endAngle: -60deg;
+  }
+
+  .box8 {
+    --initialScale: 8.00;
+    --endScale: 10.0;
+    --initialAngle: -60deg;
+    --endAngle: -70deg;
+  }
+
+  .box9 {
+    --initialScale: 10.0;
+    --endScale: 14.0;
+    --initialAngle: -70deg;
+    --endAngle: -85deg;
+  }
+
+  .box10 {
+    --initialScale: 14.0;
+    --endScale: 20.0;
+    --initialAngle: -85deg;
+    --endAngle: -99deg;
+  }
+
+  @keyframes show {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .box0 {
+    animation: boxMove 14s linear infinite, show 14s linear infinite;
+  }
+}
