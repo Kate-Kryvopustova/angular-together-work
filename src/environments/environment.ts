@@ -4,6 +4,9 @@
 
 export const environment = {
   production: false,
+  mapbox: {
+    accessToken: 'pk.eyJ1IjoibWFuZHIiLCJhIjoiY2ttaXFydHRpMGp2dTJ3cGY4MHlleHZqOSJ9.m8YQ2mVXJJcyYieE6dk2mw'
+  },
   apiKey: 'AIzaSyCyCADEmJe1LTQDlbOu9JgoBzGy-HeoSaA',
   authDomain: 'list-17d13.firebaseapp.com',
   projectId: 'list-17d13',

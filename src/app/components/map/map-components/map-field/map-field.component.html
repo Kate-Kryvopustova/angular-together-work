@@ -1,0 +1,33 @@
+<div id="map" class="map-container">
+  <div class="map-field-menu">
+    <label for="satellite-v9">
+      satellite
+      <input id="satellite-v9" type="radio" name="rtoggle" value="satellite" (click)="changeStyle('satellite-v9')">
+    </label>
+
+    <label for="light-v10">
+      light
+      <input id="light-v10" type="radio" name="rtoggle" value="light" (click)="changeStyle('light-v10')">
+    </label>
+
+    <label for="dark-v10">
+      dark
+      <input class="radio-input" id="dark-v10" type="radio" name="rtoggle" value="dark" (click)="changeStyle('dark-v10')">
+    </label>
+
+    <label for="streets-v11">
+      streets
+      <input id="streets-v11" type="radio" name="rtoggle" value="streets" checked="checked" (click)="changeStyle('streets-v11')">
+    </label>
+
+    <label for="outdoors-v11">
+      outdoors
+      <input id="outdoors-v11" type="radio" name="rtoggle" value="outdoors" (click)="changeStyle('outdoors-v11')">
+    </label>
+  </div>
+  <app-map-input-field
+    *ngIf="isMarkerForm"
+    [isMarkerForm]="isMarkerForm"
+    (closeForm)="onCloseForm($event)">
+  </app-map-input-field>
+</div>

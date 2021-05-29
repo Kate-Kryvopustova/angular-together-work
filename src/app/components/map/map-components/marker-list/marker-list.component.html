@@ -1,0 +1,16 @@
+<div class="marker-list-wrapper">
+  <div class="marker-list-title">
+    <h2>List of places</h2>
+  </div>
+  <div
+    class="empty-list-message"
+    *ngIf="!markerList || !markerList.length"
+  >
+    <p>List is empty</p>
+  </div>
+  <app-marker
+    *ngFor="let markerItem of markerList "
+    [marker]=markerItem
+    (activeMarker)="onActiveMarker($event)"
+  ></app-marker>
+</div>

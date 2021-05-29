@@ -1,0 +1,9 @@
+<div
+  class="marker-card {{marker.active ? 'marker-card-active' : ''}}"
+  (click)="selectMarker(marker.id)">
+  <div class="marker-content">
+    <h3 class="marker-name">{{ marker.name }}</h3>
+    <p class="marker-description">{{ marker.description }}</p>
+  </div>
+  <button (click)="onDeleteMarker(marker.id)">&#215;</button>
+</div>

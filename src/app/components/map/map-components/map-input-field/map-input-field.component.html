@@ -1,0 +1,64 @@
+<div class="input-field-background">
+  <div class="input-field-wrapper">
+    <form
+      class="input-fields"
+      (submit)="onAddMarker($event, markerNameEl, markerDescriptionEl)"
+    >
+      <label class="map-input-coords">
+        Latitude
+        <input
+          #latitudeEl
+          name="latitude"
+          type="number"
+          step="0.01"
+          value="{{ lat }}"
+          (keyup)="onChangeCoords(latitudeEl.value, null)"
+        >
+      </label>
+      <label class="map-input-coords">
+        Longitude
+        <input
+          #longitudeEl
+          name="longitude"
+          type="number"
+          step="0.01" value="{{ lng }}"
+          (keyup)="onChangeCoords(null, longitudeEl.value)"
+        >
+      </label>
+      <label class="map-input-coords">
+        Name of place
+        <input
+          class="marker-name-input"
+          #markerNameEl
+          name="marker-name"
+          type="text"
+          value="{{ markerName }}"
+          (keyup)="onChangeMarkerName(markerNameEl.value)"
+        >
+      </label>
+      <label class="map-textarea-pop-up">
+        Description
+        <textarea
+          #markerDescriptionEl
+          name="marker-description"
+          maxlength="300"
+
+          value="{{ markerDes }}"
+          (keyup)="onChangeMarkerDes(markerDescriptionEl.value)"
+        ></textarea>
+      </label>
+      <button
+        class="btn-add-marker"
+        (click)="onAddMarker($event, markerNameEl, markerDescriptionEl)"
+      >
+        Add marker
+      </button>
+    </form>
+    <button
+      class="btn-close-map-form"
+      (click)="onClickCloseForm()"
+    >
+      &#215;
+    </button>
+  </div>
+</div>
