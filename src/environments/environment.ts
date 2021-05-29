@@ -6,7 +6,14 @@ export const environment = {
   production: false,
   mapbox: {
     accessToken: 'pk.eyJ1IjoibWFuZHIiLCJhIjoiY2ttaXFydHRpMGp2dTJ3cGY4MHlleHZqOSJ9.m8YQ2mVXJJcyYieE6dk2mw'
-  }
+  },
+  apiKey: 'AIzaSyCyCADEmJe1LTQDlbOu9JgoBzGy-HeoSaA',
+  authDomain: 'list-17d13.firebaseapp.com',
+  projectId: 'list-17d13',
+  storageBucket: 'list-17d13.appspot.com',
+  messagingSenderId: '858371863491',
+  appId: '1:858371863491:web:638cacb7740c03c8a20376',
+  measurementId: 'G-8DQ5VQ8NT5'
 };
 
 /*

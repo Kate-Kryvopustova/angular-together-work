@@ -43,6 +43,12 @@
   font-size: large;
 }
 
+
+@media (max-width: 500px) {
+  .navigation {
+    width: 450px;
+  }
+} 
 /*Background*/
 
 .background-container {

@@ -15,13 +15,13 @@ export class MarkerComponent implements OnInit {
 
   constructor(public map: MapService) {}
 
-  onDeleteMarker(id) {
+  onDeleteMarker(id): void {
     this.map.removeMarker(id);
     const marker = document.getElementById(id);
     marker.parentNode.removeChild(marker);
   }
 
-  selectMarker(id) {
+  selectMarker(id): void {
     this.activeMarker.emit(id);
   }
 

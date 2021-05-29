@@ -1,1 +1,45 @@
-<p>Chart component</p>
+<app-nav></app-nav>
+<div class="wrapper">
+
+  <div class="container-control-graphic">
+    <div class="control-graphic">
+      <button mat-stroked-button class="graphhic__button" *ngIf="condition" (click)="getFunc('line')">line</button>
+      <button mat-stroked-button class="graphhic__button" *ngIf="condition" (click)="getFunc('radar')">radar</button>
+      <button mat-stroked-button class="graphhic__button" *ngIf="condition" (click)="getFunc('bar')">bar</button>
+      <button mat-stroked-button class="graphhic__button" *ngIf="condition" (click)="getFunc('pie')">pie</button>
+      <button mat-stroked-button color="warn" class="graphhic__button" *ngIf="condition" (click)="popupCall()">clear</button>
+    </div>
+
+    <div>
+      <div>
+        <form  class="container-form">
+          <mat-form-field>
+            <input type="number" matInput [formControl]="arrInputControl" >
+          </mat-form-field>
+          <button mat-stroked-button class="form__button" (click)="addValue()">Add</button>
+        </form >
+      </div>
+
+      <div id="container" *ngIf="condition">
+        <div id="divDescription">
+          <p>{{desription}}</p>
+        </div>
+        <div id="divChart">
+          <canvas mdbChart  width="200" height="200" id="myChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bg-modal">
+    <div class="popup" *ngIf="conditionPopup">
+      <p>clear the array?</p>
+      <div>
+        <button (click)="clearLocalDatas()">yes</button>
+        <button (click)="closePopup()">nooo</button>
+      </div>
+    </div>
+  </div>
+
+</div>

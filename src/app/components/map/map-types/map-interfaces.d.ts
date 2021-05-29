@@ -5,7 +5,7 @@ export type TMarker = {
   name: string
   description: string
   active: boolean
-}
+};
 
 export type TMapEvent = {
   originalEvent: {
@@ -13,4 +13,4 @@ export type TMapEvent = {
       id: string
     }
   }
-}
+};

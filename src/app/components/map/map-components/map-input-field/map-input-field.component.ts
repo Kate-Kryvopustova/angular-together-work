@@ -31,26 +31,26 @@ export class MapInputFieldComponent implements OnInit {
     this.markerDes = this.map.markerDes;
   }
 
-  onClickCloseForm() {
+  onClickCloseForm(): void {
     this.isMarkerForm = false;
     this.closeForm.emit(this.isMarkerForm);
   }
 
-  onChangeCoords(lat, lng) {
+  onChangeCoords(lat, lng): void {
     lat = lat ? Number(lat) : this.map.lat;
     lng = lng ? Number(lng) : this.map.lng;
     this.map.setLatLng(lat, lng);
   }
 
-  onChangeMarkerName(newName: string) {
+  onChangeMarkerName(newName: string): void {
     this.map.setMarkerName(newName);
   }
 
-  onChangeMarkerDes(newDescription: string) {
+  onChangeMarkerDes(newDescription: string): void {
     this.map.setMarkerDes(newDescription);
   }
 
-  onAddMarker(event, markerNameEl, markerDescription) {
+  onAddMarker(event, markerNameEl, markerDescription): void {
     event.preventDefault();
     const id = Date.now();
     const { lng, lat, markerName, markerDes } = this.map;
@@ -77,7 +77,7 @@ export class MapInputFieldComponent implements OnInit {
     }
   }
 
-  addPoint(lng: number, lat: number, id: number) {
+  addPoint(lng: number, lat: number, id: number): void {
     const icon = new Image(30, 45);
     icon.id = `${id}`;
     icon.src = blueIcon;

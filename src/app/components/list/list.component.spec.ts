@@ -1,6 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListComponent } from './list.component';
+import {BehaviorSubject} from 'rxjs';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {FormBuilder} from '@angular/forms';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+
+const FirestoreStub = {
+  collection: (name: string) => ({
+    doc: (id: string) => ({
+      valueChanges: () => new BehaviorSubject({ foo: 'bar' }),
+      set: (localId: any) => new Promise((resolve, reject) => resolve({})),
+    }),
+  }),
+};
 
 describe('ListComponent', () => {
   let component: ListComponent;
@@ -8,7 +23,9 @@ describe('ListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListComponent ]
+      declarations: [ ListComponent ],
+      providers: [{ provide: AngularFirestore, useValue: FirestoreStub }],
+      imports: [ MatSnackBarModule, MatDialogModule, ReactiveFormsModule ]
     })
     .compileComponents();
   });
@@ -22,4 +39,5 @@ describe('ListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
