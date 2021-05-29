@@ -15,13 +15,13 @@ export class MapFieldComponent implements OnInit {
 
   constructor(public map: MapService) {}
 
-  getList() {
+  getList(): void {
     this.map.getMarkerList().subscribe((list: TMarker[]) => {
       this.markerList = list;
     });
   }
 
-  showMapPopUpEvent() {
+  showMapPopUpEvent(): void {
     this.map.mapField.on('contextmenu', e => {
       if (!this.isMarkerForm) {
         const { lng, lat } = e.lngLat;
@@ -31,7 +31,7 @@ export class MapFieldComponent implements OnInit {
     });
   }
 
-  selectIconEvent() {
+  selectIconEvent(): void {
     this.map.mapField.on('click', (e: TMapEvent) => {
       const id = Number(e.originalEvent.target.id);
       if (!this.markerList) {
@@ -41,23 +41,23 @@ export class MapFieldComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.map.buildMap();
     this.getList();
     this.showMapPopUpEvent();
     this.selectIconEvent();
   }
 
-  setList(event) {
+  setList(event): void {
     this.markerList = event;
     this.setMarkerList.emit(this.markerList);
   }
 
-  onCloseForm(event) {
+  onCloseForm(event): void {
     this.isMarkerForm = event;
   }
 
-  changeStyle(layerId: string) {
+  changeStyle(layerId: string): void {
     this.map.mapField.setStyle(`mapbox://styles/mapbox/${layerId}`);
   }
 }

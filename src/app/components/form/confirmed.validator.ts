@@ -1,4 +1,4 @@
-import {FormGroup} from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 export const ConfirmedValidator = (controlName: string, matchingControlName: string) => (formGroup: FormGroup) => {
   const control = formGroup.controls[controlName];

@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 
 import { Photos } from '../interfaces/photos.interface';
-import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class PhotosService {
 
   constructor(private http: HttpClient) {

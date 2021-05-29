@@ -19,13 +19,13 @@ export class MarkerListComponent implements OnInit {
     this.getMarkerList();
   }
 
-  getMarkerList() {
+  getMarkerList(): void {
     this.map.getMarkerList().subscribe((list: TMarker[]) => {
       this.markerList = list;
     });
   }
 
-  onActiveMarker(id: number) {
+  onActiveMarker(id: number): void {
     this.map.setIcon(id);
   }
 }

@@ -1,6 +1,6 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ConfirmedValidator} from './confirmed.validator';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ConfirmedValidator } from './confirmed.validator';
 
 @Component({
   selector: 'app-form',
