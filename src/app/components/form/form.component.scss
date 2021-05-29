@@ -35,6 +35,11 @@
       color: #f8eacf;
     }
   }
+
+  table {
+    table-layout: fixed;
+    white-space: nowrap;
+  }
 }
 
 td {
@@ -105,7 +110,6 @@ td {
 .container .icon {
   display: flex;
   position: relative;
-  margin-left: 40px;
 }
 
 .container .icon path {
@@ -137,6 +141,8 @@ td {
     fill: rgba(249, 235, 208, .5);
   }
 }
+
+/*Background*/
 
 .box div {
   position: absolute;
